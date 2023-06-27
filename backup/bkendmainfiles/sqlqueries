@@ -1,0 +1,8 @@
+CREATE TABLE Users (id INT PRIMARY KEY IDENTITY,username VARCHAR(255) NOT NULL,email VARCHAR(255) NOT NULL,password VARCHAR(255) NOT NULL,created_at DATETIME DEFAULT GETDATE());
+INSERT INTO Users (username, email, password)VALUES ('JohnDoe', 'johndoe@example.com', 'password123');
+
+
+CREATE TABLE RoadTrips (ID INT PRIMARY KEY,Destination VARCHAR(255),Date VARCHAR(255),TicketsAvailable INT,Price VARCHAR(255));
+INSERT INTO RoadTrips (ID, Destination, Date, TicketsAvailable, Price)VALUES(1, 'Beachside Retreat', 'July 10, 2023', 5, '$50'),(2, 'Mountain Adventure', 'August 5, 2023', 8, '$75'),(3, 'Coastal Getaway', 'September 2, 2023', 3, '$60');
+CREATE TABLE Bookings (ID INT IDENTITY(1,1) PRIMARY KEY,UserId INT,TripId INT,Booker VARCHAR(255),TicketsBooked INT,Destination VARCHAR(255),Date VARCHAR(255),Price VARCHAR(255),CONSTRAINT FK_Bookings_Users FOREIGN KEY (UserId) REFERENCES Users(ID),CONSTRAINT FK_Bookings_RoadTrips FOREIGN KEY (TripId) REFERENCES RoadTrips(ID));
+
